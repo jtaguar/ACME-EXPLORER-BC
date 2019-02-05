@@ -1,0 +1,24 @@
+{
+  "name": "acme-explorer",
+  "version": "1.0.0",
+  "description": "acme-explorer REST API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluecloudus/ACME-EXPLORER-BC.git"
+  },
+  "author": "Yerlli Salas, fauayaver@alum.us.es, Francisca Gonzales Y Juan Tagua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bluecloudus/ACME-EXPLORER-BC/issues"
+  },
+  "homepage": "https://github.com/bluecloudus/ACME-EXPLORER-BC#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.9"
+  }
+}
