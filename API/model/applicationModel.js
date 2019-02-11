@@ -9,6 +9,8 @@ var ApplicationSchema = new Schema({
     },
     ticker: {
         type: String,
+        minlength: 11,
+        maxlength: 11,
         required: 'Kindly enter the  ticker of application'
     },
     status: {
