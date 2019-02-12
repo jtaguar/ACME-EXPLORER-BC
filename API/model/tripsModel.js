@@ -2,14 +2,34 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var stagechema = new Schema({
+    title: {
+        type: String,
+        required: 'Kindly enter the title of the Stage'
+    },
+    description: {
+        type: String,
+        required: 'Kindly enter the description of the Stage'
+    },
+    price: {
+        type: Number,
+        default: 0.00
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
+}, { strict: false });
+
 var TripSchema = new Schema({
     ticker: {
         type: String,
-        required: 'Kindly enter the ticker of the Category'
+        required: 'Kindly enter the ticker of the Trip',
+        unique:true
     },
     title: {
         type: String,
-        required: 'Kindly enter the title of the Category'
+        required: 'Kindly enter the title of the Trip'
     },
     description: {
         type: String,
@@ -17,10 +37,10 @@ var TripSchema = new Schema({
     },
     price: {
         type: Number
+        
     },
     list_requirements: {
-        type: Array,
-        required: ''
+        type: Array 
     },
     date_start: {
         type: Date,
@@ -40,24 +60,5 @@ var TripSchema = new Schema({
     }
 }, { strict: false });
 
-var stagechema = new Schema({
-    title: {
-        type: String,
-        required: 'Kindly enter the title of the Category'
-    },
-    description: {
-        type: String,
-        required: 'Kindly enter the description of the Trip'
-    },
-    price: {
-        type: Number,
-        default: 0.00
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    }
-}, { strict: false });
-
-module.exports = mongoose.model('Items', ItemSchema);
-module.exports = mongoose.model('Categories', TripSchema);
+module.exports = mongoose.model('Trips', TripSchema);
+module.exports = mongoose.model('Stages', stagechema);

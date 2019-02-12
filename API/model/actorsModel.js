@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 var ActorSchema = new Schema({
     DNI: {
         type: String,
-        required: 'Kindly enter the actor DNI'
+        required: 'Kindly enter the actor DNI',
+        unique: true
     },
     name: {
         type: String,
