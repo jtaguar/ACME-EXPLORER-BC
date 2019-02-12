@@ -3,10 +3,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ApplicationSchema = new Schema({
-    DNI: {
-        type: String,
-        required: 'Kindly enter the actor DNI'
-    },
     ticker: {
         type: String,
         minlength: 11,

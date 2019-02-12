@@ -3,11 +3,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ActorSchema = new Schema({
-    DNI: {
-        type: String,
-        required: 'Kindly enter the actor DNI',
-        unique: true
-    },
     name: {
         type: String,
         required: 'Kindly enter the actor name'
@@ -18,7 +13,8 @@ var ActorSchema = new Schema({
     },
     email: {
         type: String,
-        required: 'Kindly enter the actor email'
+        required: 'Kindly enter the actor email',
+        unique: true
     },
     password: {
         type: String,
@@ -37,7 +33,6 @@ var ActorSchema = new Schema({
         required: 'Kindly enter the user role(s)',
         enum: ['ADMINISTRATOR', 'MANAGER', 'EXPLORER']
     }],
-    
     created: {
         type: Date,
         default: Date.now

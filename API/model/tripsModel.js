@@ -40,7 +40,7 @@ var TripSchema = new Schema({
         
     },
     list_requirements: {
-        type: Array 
+        type: [String] //['adios','hola']
     },
     date_start: {
         type: Date,
