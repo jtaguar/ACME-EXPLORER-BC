@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ApplicationSchema = new Schema({
+    trip: {
+        type: ObjectId,
+        ref: 'Trip'
+    },
     ticker: {
         type: String,
         minlength: 11,
