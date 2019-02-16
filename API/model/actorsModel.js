@@ -15,8 +15,6 @@ var ActorSchema = new Schema({
         type: String,
         required: 'Kindly enter the actor email',
         unique: true
-        [emailValidation,
-            'email must be abcde.example@gmail.com']
     },
 
 
@@ -45,8 +43,13 @@ var ActorSchema = new Schema({
     { strict: false }
 ); 
 
-function emailValidation(value){
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value);
-}
+
+   // Custom validation for email
+   ActorSchema.path('email').validate((val) => {
+    emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(val);
+}, 'E-mail invalido.');
+
+
 
 module.exports = mongoose.model('Actors', ActorSchema);

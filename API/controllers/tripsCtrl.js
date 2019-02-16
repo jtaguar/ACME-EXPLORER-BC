@@ -61,7 +61,7 @@ exports.update_an_trip = function (req, res) {
 };
 
 exports.delete_an_trip = function (req, res) {
-    Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
+    Trip.deleteOne({ _id: req.params._id }, function (err, trip) {
         if (err) {
             res.send(err);
         }
