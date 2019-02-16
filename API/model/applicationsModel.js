@@ -5,13 +5,8 @@ var Schema = mongoose.Schema;
 var ApplicationSchema = new Schema({
     trip: {
         type: mongoose.ObjectId,
-        ref: 'Trip'
-    },
-    ticker: {
-        type: String,
-        minlength: 11,
-        maxlength: 11,
-        required: 'Kindly enter the  ticker of application'
+        ref: 'Trip',
+        required: 'Kindly enter a valid trip of application'
     },
     status: {
         type: String,
