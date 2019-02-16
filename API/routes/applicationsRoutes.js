@@ -17,8 +17,10 @@ module.exports = function (app) {
    */
 
     app.route('/v1/applications/:status')
-        .post(application.create_an_application)
         .get(application.search_applications);
+
+    app.route('/v1/applications')
+        .post(application.create_an_application);
 
     /**
    * Put an applications
