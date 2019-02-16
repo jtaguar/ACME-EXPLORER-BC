@@ -19,7 +19,7 @@ exports.create_an_application = function (req, res) {
 exports.search_applications = function (req, res) {
     //Check if status param exists (status: req.query.status)  
     Application.find(
-        // { status: req.params.status },
+        { status: req.params.status },
         function (err, applications) {
             if (err) {
                 res.send(err);
