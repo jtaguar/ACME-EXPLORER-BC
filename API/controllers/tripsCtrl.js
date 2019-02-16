@@ -18,17 +18,17 @@ var mongoose = require('mongoose'),
 
 exports.list_all_trips = function (req, res) {
     //Check if status param exists (status: req.query.status)  
-    Trip.find({ }, function (err, trips) {
+    Trip.find( function (err, trips) {
         if (err) {
             res.send(err);
         }
         else {
-            res.json(trips);
+            // res.append('Trip returned from the trip search');
+            res.json(trips); 
         }
     });
 
     console.log('Searching an trip depending on params');
-    res.send('Trip returned from the trip search');
 };
 
 exports.list_a_trip = function (req, res) {

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var ApplicationSchema = new Schema({
     trip: {
-        type: ObjectId,
+        type: mongoose.ObjectId,
         ref: 'Trip'
     },
     ticker: {

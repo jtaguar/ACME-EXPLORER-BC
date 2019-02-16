@@ -13,12 +13,12 @@ module.exports = function (app) {
    * @section application
    * @type post get
    * @url /v1/applications
-   * @param {string} sortedBy (category)
+   * @param {string} sortedBy (status)
    */
 
-    app.route('/v1/applications')
+    app.route('/v1/applications/:status')
         .post(application.create_an_application)
-        .get(application.search_application);
+        .get(application.search_applications);
 
     /**
    * Put an applications
@@ -28,10 +28,8 @@ module.exports = function (app) {
    * @type  put delete
    * @url /v1/application/:ticker
   */
+
     app.route('/v1/applications/:_id')
         .put(application.update_an_application)
         .delete(application.delete_an_application);
-
-
-
 }
