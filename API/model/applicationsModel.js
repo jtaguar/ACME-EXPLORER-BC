@@ -14,7 +14,8 @@ var ApplicationSchema = new Schema({
         enum: ['PENDING', 'DUE', 'REJECTED', 'ACCEPTED', 'CANCELLED']
     },
     comment: {
-        type: String
+        type: String,
+        maxlength:255
     },
     reject_reason: {
         type: String

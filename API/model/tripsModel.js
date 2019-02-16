@@ -45,10 +45,13 @@ var TripSchema = new Schema({
     date_start: {
         type: Date,
         required: 'Kindly enter the start of the Trip'
+       
     },
     date_end: {
         type: Date,
         required: 'Kindly enter the end of the Trip'
+        [dateValidation,
+            'Start date must be less than End_date']
     },
     picture: [{
         data: Buffer, contentType: String
@@ -60,5 +63,9 @@ var TripSchema = new Schema({
     }
 }, { strict: false });
 
+function dateValidation (value){
+
+    return this.date_start <= value;
+}
 module.exports = mongoose.model('Trips', TripSchema);
 module.exports = mongoose.model('Stages', stagechema);
