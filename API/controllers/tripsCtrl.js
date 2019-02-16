@@ -50,7 +50,7 @@ exports.list_a_trip = function (req, res) {
 
 exports.update_an_trip = function (req, res) {
     console.log((req.body));
-    Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+    Trip.findOneAndUpdate({ ticker: req.params.ticker }, req.body, { new: true }, function (err, trip) {
         if (err) {
             res.send(err);
         }
