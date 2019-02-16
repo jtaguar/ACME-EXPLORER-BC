@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d25e1c26-87aa-4c7e-809b-cfee49cf1cff",
-		"name": "Arquitectura",
+		"_postman_id": "8dfa5fd3-8e34-4c6b-802a-c4aa2f24a668",
+		"name": "ACME-EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -284,6 +284,28 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7f8fc347-891b-4ef1-98e3-2aed26db2332",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f636da2d-4f6e-4b7e-a7b1-3505d186baee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

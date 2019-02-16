@@ -19,26 +19,24 @@ module.exports = function (app) {
     app.route('/v1/applications/:status')
         .get(application.search_applications);
 
-     /**
-   * Put an applications
-   * Delete an applications
-  
-   * @section applications
-   * @type  post
-   * @url /v1/application/
-  */    
+    /**
+     * Post an applications   
+     * @section applications
+     * @type  post
+     * @url /v1/application
+     */
 
     app.route('/v1/applications')
         .post(application.create_an_application);
 
     /**
-   * Put an applications
-   * Delete an applications
+     * Put an applications
+     * Delete an applications
   
-   * @section applications
-   * @type  put delete
-   * @url /v1/application/:ticker
-  */
+     * @section applications
+     * @type  put delete
+     * @url /v1/application/:ticker
+     */
 
     app.route('/v1/applications/:_id')
         .put(application.update_an_application);
