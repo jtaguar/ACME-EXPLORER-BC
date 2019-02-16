@@ -42,8 +42,7 @@ exports.list_a_trip = function (req, res) {
         }
     });
 
-    console.log('Searching an trip depending on params');
-    res.send('Trip returned from the trip search');
+    console.log('Searching an trip depending on params'); 
 };
 
 
