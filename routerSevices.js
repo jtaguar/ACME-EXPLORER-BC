@@ -1,11 +1,9 @@
 var express = require('express'),
-    app = express;
+    app = express();
+
+var routesActors = require('./API/routes/actorsRoutes');
+var routesApplications = require('./API/routes/applicationsRoutes');
+var routesTrips = require('./API/routes/tripsRoutes');
 
 
-var routesActors = require('./api/routes/actorsRoutes');
-var routesApplications = require('./api/routes/applicationsRoutes');
-var routesTrips = require('./api/routes/tripRoutes');
-
-
-
-module.exports = routesActors(app), routesApplications(app), routesTrips(app);
+module.exports = app, routesActors(app), routesApplications(app), routesTrips(app);

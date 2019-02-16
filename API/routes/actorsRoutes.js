@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (app) {
 
-  var actor = require('../controllers/actorsCtrl');
+  var actors = require('../controllers/actorsCtrl');
 
   /**
  
@@ -25,12 +25,9 @@ module.exports = function (app) {
 *    RequiredRoles: to be the proper actor
 * @section actors
 * @type  put
-* @url /v1/actors/:DNI
+* @url /v1/actors/:email
 */
-  app.route('/v1/actors/:DNI')
-    .put(actors.update_an_actor)
-
-
-
+  app.route('/v1/actors/:email')
+    .put(actors.update_an_actor);
 
 }
