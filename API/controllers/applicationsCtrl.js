@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
     Application = mongoose.model('Applications');
 
 exports.create_an_application = function (req, res) {
-    //Check if the user is an explorer and if not: res.status(403); "an access token is valid, but requires more privileges"
+    //Check if the user is an explorer and if not: res.status(403); 
+    //"an access token is valid, but requires more privileges"
+    console.log((req.body));
     var new_application = new Application(req.body);
     new_application.save(function (err, application) {
         if (err) {
@@ -35,6 +37,7 @@ exports.search_applications = function (req, res) {
 
 
 exports.update_an_application = function (req, res) {
+  console.log((req.body));
     Application.findOneAndUpdate(
         { _id: req.params.applicationId },
         req.body,
