@@ -1,22 +1,15 @@
 require('./db');
-require ('./routerSevices');
+var app = require('./routerSevices');
+var port = process.env.PORT || 4000,
+    bodyParser = require('body-parser')
+    morgan = require('morgan');
 
-bodyParser = require('body-parser');
-
-var port = process.env.PORT || 4000;
-
-console.log("Server ready with static content!");
+// console.log("Server ready with static content!");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
-console.log("Connecting DB to: " + mongoDBURI);
-mongoose.connection.on("open", function (err, conn) {
 app.listen(port, function () {
-console.log('ACME-Market RESTful API server started on: ' + port);
-});
-});
- 
-mongoose.connection.on("error", function (err, conn) {
-console.error("DB init error " + err);
+    console.log('ACME-Explorer RESTful API server started on: ' + port);
 });

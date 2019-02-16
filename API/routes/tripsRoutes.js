@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (app) {
 
-    var application = require('../controllers/tripsCtrl');
+    var trip = require('../controllers/tripsCtrl');
 
     /**
    
@@ -13,12 +13,12 @@ module.exports = function (app) {
    * @section application
    * @type post get
    * @url /v1/applications
-   * @param {string} sortedBy (category)
-   */
+   * param {string} sortedBy (category)
+   */ 
 
-    app.route('/v1/applications')
-        .post(application.create_an_trip)
-        .get(application.search_trip);
+    app.route('/v1/trips')
+        .post(trip.create_an_trip)
+        .get(trip.list_all_trips);
 
     /**
      * Put an applications
@@ -29,8 +29,8 @@ module.exports = function (app) {
      * @url /v1/application/:ticker
     */
     app.route('/v1/trips/:ticker')
-        .put(application.update_an_trip)
-        .delete(application.delete_an_trip);
+        .put(trip.update_an_trip)
+        .delete(trip.delete_an_trip);
 
 }
 

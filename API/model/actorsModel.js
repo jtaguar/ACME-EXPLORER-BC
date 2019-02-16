@@ -39,7 +39,7 @@ var ActorSchema = new Schema({
     }
 },
     { strict: false }
-);
+); 
 
 
 module.exports = mongoose.model('Actors', ActorSchema);
