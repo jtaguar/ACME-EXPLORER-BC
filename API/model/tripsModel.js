@@ -29,15 +29,12 @@ var stagechema = new Schema({
 var TripSchema = new Schema({
     ticker: {
         type: String,
-        //required: 'Kindly enter the ticker of the Trip',
-        unique:true,
-        //This validation does not run after middleware pre-save
-        validate: {
-           validator: function(v) {
-               return /\d{6}-\w{6}/.test(v);
-           },
-           message: 'ticker is not valid!, Pattern("\d(6)-\w(6)")'
-         }
+        unique: true,
+        //This validation does not run after middleware pre-save        required: 'Kindly enter the ticker of the Trip',
+        validate: [
+            validator,
+            'ticker is not valid!, Pattern("\d(6)-\w(4)")'
+        ]
     },
     title: {
         type: String,
@@ -49,7 +46,7 @@ var TripSchema = new Schema({
     },
     price: {
         type: Number
-        
+
     },
     list_requirements: {
         type: [String] //['adios','hola']
@@ -57,13 +54,19 @@ var TripSchema = new Schema({
     date_start: {
         type: Date,
         required: 'Kindly enter the start of the Trip'
+
     },
     date_end: {
         type: Date,
-        required: 'Kindly enter the end of the Trip'
+        required: 'Kindly enter the end of the Trip',
+        validate: [
+            dateValidation,
+            'Start date must be less than End_date'
+        ]
     },
     picture: [{
-        data: Buffer, contentType: String
+        data: Buffer,
+        contentType: String
     }],
     stage: [stagechema],
     created: {
@@ -72,15 +75,22 @@ var TripSchema = new Schema({
     }
 }, { strict: false });
 
-TripSchema.pre('save', function(callback) {
+TripSchema.pre('save', function (callback) {
     var new_trip = this;
-    var date = new Date;
-    var day=dateFormat(new Date(), "yymmdd");
-  
+    var day = dateFormat(new Date(), "yymmdd");
+
     var generated_ticker = [day, generate('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)].join('-')
     new_trip.ticker = generated_ticker;
     callback();
-  });
+});
+
+function dateValidation(value) {
+    return this.date_start <= value;
+}
+
+function validator(v) {
+    return /\d{6}-\w{4}/.test(v);
+}
 
 module.exports = mongoose.model('Trips', TripSchema);
 module.exports = mongoose.model('Stages', stagechema);

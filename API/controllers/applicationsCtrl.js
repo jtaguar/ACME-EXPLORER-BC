@@ -39,7 +39,7 @@ exports.search_applications = function (req, res) {
 exports.update_an_application = function (req, res) {
   console.log((req.body));
     Application.findOneAndUpdate(
-        { _id: req.params.applicationId },
+        { _id: req.params._id },
         req.body,
         { new: true },
         function (err, application) {
