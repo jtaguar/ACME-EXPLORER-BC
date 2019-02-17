@@ -1,6 +1,11 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const dateFormat = require('dateformat');
+
+
+const generate = require('nanoid/generate');
+
 
 var stagechema = new Schema({
     title: {
@@ -24,8 +29,12 @@ var stagechema = new Schema({
 var TripSchema = new Schema({
     ticker: {
         type: String,
-        required: 'Kindly enter the ticker of the Trip',
-        unique: true
+        unique: true,
+        //This validation does not run after middleware pre-save        required: 'Kindly enter the ticker of the Trip',
+        validate: [
+            validator,
+            'ticker is not valid!, Pattern("\d(6)-\w(4)")'
+        ]
     },
     title: {
         type: String,
@@ -66,8 +75,21 @@ var TripSchema = new Schema({
     }
 }, { strict: false });
 
+TripSchema.pre('save', function (callback) {
+    var new_trip = this;
+    var day = dateFormat(new Date(), "yymmdd");
+
+    var generated_ticker = [day, generate('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)].join('-')
+    new_trip.ticker = generated_ticker;
+    callback();
+});
+
 function dateValidation(value) {
     return this.date_start <= value;
+}
+
+function validator(v) {
+    return /\d{6}-\w{4}/.test(v);
 }
 
 module.exports = mongoose.model('Trips', TripSchema);
