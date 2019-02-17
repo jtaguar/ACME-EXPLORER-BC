@@ -8,10 +8,10 @@ var ApplicationSchema = new Schema({
         ref: 'Trip'
     },
     ticker: {
-        type: String,
+        type: String,        
         minlength: 11,
         maxlength: 11,
-        required: 'Kindly enter the  ticker of application'
+        required: 'Kindly enter the  ticker of application'        
     },
     status: {
         type: String,

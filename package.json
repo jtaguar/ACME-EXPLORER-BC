@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/bluecloudus/ACME-EXPLORER-BC#readme",
   "dependencies": {
+    "dateformat": "^3.0.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.13"
+    "mongoose": "^5.4.13",
+    "nanoid": "^2.0.1"
   },
   "devDependencies": {
     "morgan": "^1.9.1"
