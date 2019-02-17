@@ -14,7 +14,8 @@ var ActorSchema = new Schema({
     email: {
         type: String,
         required: 'Kindly enter the actor email',
-        unique: true
+        unique: true,
+        validate: [emailValidation, "invalid emmail"]
     },
     password: {
         type: String,
@@ -23,7 +24,7 @@ var ActorSchema = new Schema({
     },
     phone: {
         type: String,
-        required: 'Kindly enter the phone number'
+
     },
     address: {
         type: String
@@ -39,7 +40,11 @@ var ActorSchema = new Schema({
     }
 },
     { strict: false }
-); 
+);
 
+// Custom validation for email
+function emailValidation(value) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value);
+}
 
 module.exports = mongoose.model('Actors', ActorSchema);

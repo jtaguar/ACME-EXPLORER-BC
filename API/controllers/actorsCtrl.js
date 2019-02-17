@@ -22,11 +22,15 @@ exports.update_an_actor = function (req, res) {
    "an access token is valid, but requires more privileges"
   */
   console.log((req.body));
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(actor);
-    }
-  });
+  Actor.findOneAndUpdate(
+    { email: req.params.email },
+    req.body,
+    { new: true },
+    function (err, actor) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(actor);
+      }
+    });
 };
