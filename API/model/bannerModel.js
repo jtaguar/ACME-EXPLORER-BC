@@ -7,13 +7,13 @@ var BannerSchema = new Schema({
     actorId: {
         type: mongoose.ObjectId,
         ref: 'Actor',
-        required: 'Kindly enter a valid explorer of application'
+        required: 'Kindly enter a valid sponsor of application'
     },
 
     trip: {
         type: mongoose.ObjectId,
         ref: 'Trip',
-        required: 'Kindly enter a valid trip of application'
+        required: 'Kindly enter a valid trip of banner'
     },
 
     description: {
@@ -53,9 +53,6 @@ var BannerSchema = new Schema({
     { strict: false }
 );
 
-// Custom validation for email
-function emailValidation(value) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value);
-}
+
 
 module.exports = mongoose.model('Banner', BannerSchema);
