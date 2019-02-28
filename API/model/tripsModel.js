@@ -33,7 +33,7 @@ var TripSchema = new Schema({
         required: 'Kindly enter a valid manager of trip'
     },
     published: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
     ticker: {
