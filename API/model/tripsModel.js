@@ -46,6 +46,9 @@ var TripSchema = new Schema({
             'ticker is not valid!, Pattern("\d(6)-\w(4)")'
         ]
     },
+    reject_reason: {
+        type: String
+    },
     title: {
         type: String,
         required: 'Kindly enter the title of the Trip'
@@ -106,6 +109,9 @@ function validator(v) {
     return /\d{6}-\w{4}/.test(v);
 }
 
+TripSchema.index({ticker: 'text', title: 'text', description: 'text' });
+TripSchema.index({price: 1 });
+TripSchema.index({cancelationMoment: 1 });
 
 module.exports = mongoose.model('Trips', TripSchema);
 module.exports = mongoose.model('Stages', stagechema);
