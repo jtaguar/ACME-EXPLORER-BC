@@ -8,26 +8,31 @@ var mongoose = require('mongoose'),
 exports.list_all_indicators = function (req, res) {
     console.log('Requesting indicators');
 
-    DataWareHouse.find().sort("-computationMoment").exec(function (err, indicators) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.json(indicators);
-        }
-    });
+    DataWareHouse.find()
+        .sort("-computationMoment")
+        .exec(function (err, indicators) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.json(indicators);
+            }
+        });
 };
 
 exports.last_indicator = function (req, res) {
 
-    DataWareHouse.find().sort("-computationMoment").limit(1).exec(function (err, indicators) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.json(indicators);
-        }
-    });
+    DataWareHouse.find()
+        .sort("-computationMoment")
+        .limit(1)
+        .exec(function (err, indicators) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.json(indicators);
+            }
+        });
 };
 
 var CronJob = require('cron').CronJob;
@@ -37,7 +42,7 @@ var CronTime = require('cron').CronTime;
 //'*/30 * * * * *' cada 30 segundos
 //'*/10 * * * * *' cada 10 segundos
 //'* * * * * *' cada segundo
-var rebuildPeriod = '*/10 * * * * *';  //El que se usará por defecto
+var rebuildPeriod = '*/35 * * * * *';  //El que se usará por defecto
 var computeDataWareHouseJob;
 
 exports.rebuildPeriod = function (req, res) {
@@ -58,7 +63,7 @@ function createDataWareHouseJob() {
             infoTripbyManager,
             infoApplicationsbyTrip,
             infoPriceofTrips,
-            ratioApplicationsStatus,
+            ratioApplicationsStatus
         ], function (err, results) {
             if (err) {
                 console.log("Error computing datawarehouse: " + err);
@@ -90,31 +95,83 @@ module.exports.createDataWareHouseJob = createDataWareHouseJob;
 
 
 function infoTripbyManager(callback) {
-    Trips.aggregate([
-        //la agregacion despues de que este bien hecha...
-    ], function (err, res) {
-        callback(err, res[0]/* .infoTripbyManager*/)
+    var pipiline = [
+        {
+            $group: {
+                _id: "$actor",
+                tripsactor: { $sum: 1 }
+            }
+        },
+        {
+            $group: {
+                _id: 0,
+                avg: { $avg: "$tripsactor" },
+                min: { $min: "$tripsactor" },
+                max: { $max: "$tripsactor" },
+                stdev: { $stdDevPop: "$tripsactor" }
+            }
+        }, {
+            $project: {
+                _id: 0
+            }
+        }
+    ];
+    Trips.aggregate(pipiline, function (err, res) {  
+        callback(err, res[0])
     });
 };
 
 function infoApplicationsbyTrip(callback) {
-    Applications.aggregate([
-        //la agregacion  despues de que este bien hecha...
-    ], function (err, res) {
-        callback(err, res[0]/*.infoApplicationsbyTrip */)
+    var pipeline = [
+        {
+            $group: { _id: "$trip", applicationTrips: { $sum: 1 } }
+        },
+        {
+            $group: {
+                _id: 0,
+                avg: { $avg: "$applicationTrips" },
+                min: { $min: "$applicationTrips" },
+                max: { $max: "$applicationTrips" },
+                stdev: { $stdDevPop: "$applicationTrips" }
+            }
+        }, {
+            $project: {
+                _id: 0
+            }
+        }
+    ];
+
+    Applications.aggregate(pipeline, function (err, res) { 
+        callback(err, res[0])
     });
 };
 
 function infoPriceofTrips(callback) {
-    Trips.aggregate([
-        //la agregacion  despues de que este bien hecha...
-    ], function (err, res) {
-        callback(err, res[0]/*.infoPriceofTrips */)
+    var pipeline = [
+        {
+            $group: { _id: "$price", tripsactor: { $sum: "$price" } }
+        },
+        {
+            $group: {
+                _id: 0,
+                avg: { $avg: "$tripsactor" },
+                min: { $min: "$tripsactor" },
+                max: { $max: "$tripsactor" },
+                stdev: { $stdDevPop: "$tripsactor" }
+            }
+        }, {
+            $project: {
+                _id: 0
+            }
+        }
+    ];
+    Trips.aggregate(pipeline, function (err, res) {  
+        callback(err, res[0])
     });
 };
 
 function ratioApplicationsStatus(callback) {
-    Applications.aggregate([
+    var pipeline = [
         {
             $facet: {
                 totalApplications: [
@@ -139,7 +196,8 @@ function ratioApplicationsStatus(callback) {
                 ratio: { $divide: ["$groupsTotal.total", "$totalApplications"] }
             }
         }
-    ], function (err, res) {
-        callback(err, res[0]/*.ratioApplicationsStatus */)
+    ];
+    Applications.aggregate(pipeline, function (err, res) {
+        callback(err, res)/*[0].ratioApplicationsStatus */
     });
 };
