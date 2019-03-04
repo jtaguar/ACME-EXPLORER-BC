@@ -11,11 +11,9 @@ var routesActors = require('./API/routes/actorsRoutes'),
     routesApplications = require('./API/routes/applicationsRoutes'),
     routesDataWareHouse = require('./API/routes/dataWareHouseRoutes'),
     routesTrips = require('./API/routes/tripsRoutes');
-    // DataWareHouseTools = require('./API/controllers/dataWareHouseCtrl');
-
+    
 module.exports = app,
     routesActors(app),
     routesApplications(app),
     routesTrips(app),
     routesDataWareHouse(app);
-// DataWareHouseTools.createDataWareHouseJob();
