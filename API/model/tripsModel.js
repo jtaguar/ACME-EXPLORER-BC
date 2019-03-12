@@ -78,7 +78,7 @@ var TripSchema = new Schema({
         required: 'Kindly enter the end of the Trip',
         validate: [
             dateValidation,
-            'Start date must be less than End_date'
+            'Date end must be higher than date start'
         ]
     },
     picture: [{
