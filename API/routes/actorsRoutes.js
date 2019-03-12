@@ -5,10 +5,8 @@ module.exports = function (app) {
     /**
      * Post an actor 
      * RequiredRoles: None
-     * Put an actor 
-     * RequiredRoles: None
      * @section actors
-     * @type post put
+     * @type post
      * @url /v1/actors
      * @param {string} role (explorer|administrator|manager|sponsor) 
     */
@@ -20,7 +18,7 @@ module.exports = function (app) {
      * Put an actor
      * RequiredRoles: to be the proper actor
      * @section actors
-     * @type  put
+     * @type put
      * @url /v1/actors/:email
     */
   app.route('/v1/actors/:email')
