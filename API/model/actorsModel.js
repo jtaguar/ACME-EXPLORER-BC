@@ -14,7 +14,8 @@ var ActorSchema = new Schema({
     email: {
         type: String,
         required: 'Kindly enter the actor email',
-        unique: true,
+        //It is necessary to comment on this line to enter large amounts of data
+        //unique: true
         validate: [emailValidation, "invalid emmail"]
     },
     password: {
