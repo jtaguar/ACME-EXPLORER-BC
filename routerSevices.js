@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 var routesActors = require('./API/routes/actorsRoutes'),
     routesApplications = require('./API/routes/applicationsRoutes'),
     routesDataWareHouse = require('./API/routes/dataWareHouseRoutes'),
-    routesTrips = require('./API/routes/tripsRoutes');
+    routesTrips = require('./API/routes/tripsRoutes'),
+    routesStore = require('./API/routes/storeRoutes');
     
 module.exports = app,
     routesActors(app),
     routesApplications(app),
     routesTrips(app),
-    routesDataWareHouse(app);
+    routesDataWareHouse(app),
+    routesStore (app);

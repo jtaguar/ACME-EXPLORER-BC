@@ -25,7 +25,8 @@
     "dateformat": "^3.0.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.13",
-    "nanoid": "^2.0.1"
+    "nanoid": "^2.0.1",
+    "stream-to-mongo-db": "^1.6.0"
   },
   "devDependencies": {
     "morgan": "^1.9.1"
