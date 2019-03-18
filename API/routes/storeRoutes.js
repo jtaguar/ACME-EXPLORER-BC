@@ -13,7 +13,7 @@ module.exports = function(app) {
 	 * @param {string} dbURL       //mandatory
      * @param {string} mongooseModel  //mandatory
 	 * @param {string} sourceFile   //mandatory
-	 * Sample: http://localhost:4000/v1/store/insertMany?dbURL=mongodb://myUser:myUserPassword@localhost:27017/ACME-Explorer&mongooseModel=Actors&sourceFile=c:/temp/TestingInsertMany.json
+	 * Sample: http://localhost:4000/v1/store/insertMany?dbURL=mongodb://localhost:27017/ACME-Explorer&mongooseModel=Actors&sourceFile=c:/temp/TestingInsertMany.json
   */
   app.route('/v1/store/insertMany')
  		.post(store.store_json_insertMany);
@@ -29,7 +29,7 @@ module.exports = function(app) {
 	 * @param {string} sourceFile   //mandatory
 	 * @param {string} batchSize   //optional
 	 * @param {string} parseString //optional
-	 * Sample: http://localhost:4000/v1/store/fs?dbURL=mongodb://myUser:myUserPassword@localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceFile=c:\temp\TestingManyActors.json
+	 * Sample: http://localhost:4000/v1/store/fs?dbURL=mongodb://localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceFile=c:\temp\TestingManyActors.json
   */
   app.route('/v1/store/fs')
 		.post(store.store_json_fs);
@@ -46,7 +46,7 @@ module.exports = function(app) {
 	 * @param {string} sourceURL   //mandatory
 	 * @param {string} batchSize   //optional
 	 * @param {string} parseString //optional
-	 * Sample: http://localhost:4000/v1/store/url?dbURL=mongodb://myUser:myUserPassword@localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceURL=http://drive.google.com/uc?export=download%26id=1KCdLMYFVlu0IPJ0I8QX0LbpSJ72a72lq
+	 * Sample: http://localhost:4000/v1/store/url?dbURL=mongodb://localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceURL=http://drive.google.com/uc?export=download%26id=1KCdLMYFVlu0IPJ0I8QX0LbpSJ72a72lq
   */
   app.route('/v1/store/url')
  		.post(store.store_json_url);
