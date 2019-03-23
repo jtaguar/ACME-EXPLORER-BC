@@ -43,16 +43,7 @@ var TripSchema = new Schema({
             'ticker is not valid!, Pattern("\d(6)-\w(4)")'
         ]
     },
-     ticker: {
-    //    This validation does not run after middleware pre-save 
-    //    required: 'Kindly enter the ticker of the Trip',
-        type: String,
-        unique: true,
-        validate: [
-            validator,
-            'ticker is not valid!, Pattern("\d(6)-\w(4)")'
-        ]
-    },
+    
     cancelled_reason: {
         type: String
     },
