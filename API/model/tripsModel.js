@@ -89,7 +89,13 @@ var TripSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
-    }
+    },
+    status: {
+        type: String,
+        enum: ['CREATED', 'PUBLISHED', 'STARTED', 'ENDED', 'CANCELLED'],
+        default: 'CREATED'
+    },
+
 }, { strict: false });
 
 TripSchema.pre('save', function (callback) {
