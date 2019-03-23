@@ -46,9 +46,9 @@ var TripSchema = new Schema({
             'ticker is not valid!, Pattern("\d(6)-\w(4)")'
         ]
     },
-    reject_reason: {
+    /*reject_reason: {
         type: String
-    },
+    },*/
     title: {
         type: String,
         required: 'Kindly enter the title of the Trip'
