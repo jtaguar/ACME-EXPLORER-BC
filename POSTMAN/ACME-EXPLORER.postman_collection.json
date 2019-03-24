@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8dfa5fd3-8e34-4c6b-802a-c4aa2f24a668",
+		"_postman_id": "878a07f5-1682-4f31-8dd3-ca4faeada561",
 		"name": "ACME-EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "actorRequest",
 			"item": [
 				{
-					"name": "Post",
+					"name": "Post Actors",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "   { \"name\":\"chanell\",\r\n    \"surname\": \"salas\",\r\n    \"email\": \"abcde.example@gmail.com\",\r\n    \"password\": \"abcde\",\r\n    \"phone\": \"809-565-8899\",\r\n    \"address\": \"Almirante Ulloa\" ,\r\n    \"role\": \"EXPLORER\"\r\n   }\r\n   "
+							"raw": "{ \r\n    \"role\" : [\r\n        \"EXPLORER\"\r\n    ], \r\n    \"name\" : \"Jose Juan\", \r\n    \"surname\" : \"Sanchez\", \r\n    \"email\" : \"jose.sanchez@gmail.com\", \r\n    \"password\" : \"123456\", \r\n    \"phone\" : \"809-565-8899\", \r\n    \"address\" : \"Almirante Ulloa\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/v1/actors",
@@ -76,6 +76,139 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Post Testing Insert Many",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/store/insertMany?dbURL=mongodb://localhost:27017/ACME-Explorer&mongooseModel=Actors&sourceFile=c:/temp/TestingInsertMany.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"store",
+								"insertMany"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://localhost:27017/ACME-Explorer"
+								},
+								{
+									"key": "mongooseModel",
+									"value": "Actors"
+								},
+								{
+									"key": "sourceFile",
+									"value": "c:/temp/TestingInsertMany.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Testing Many Actors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/store/fs?dbURL=mongodb://localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceFile=c:\\temp\\TestingManyActors.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"store",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://localhost:27017/ACME-Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "actors"
+								},
+								{
+									"key": "batchSize",
+									"value": "100"
+								},
+								{
+									"key": "parseString",
+									"value": "*"
+								},
+								{
+									"key": "sourceFile",
+									"value": "c:\\temp\\TestingManyActors.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post from URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/store/url?dbURL=mongodb://localhost:27017/ACME-Explorer&collection=actors&batchSize=100&parseString=*&sourceURL=https://drive.google.com/uc?export=download%26id=1wOcO1yIk8u3hlii5i8WIBoI15iuRpujx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"store",
+								"url"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://localhost:27017/ACME-Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "actors"
+								},
+								{
+									"key": "batchSize",
+									"value": "100"
+								},
+								{
+									"key": "parseString",
+									"value": "*"
+								},
+								{
+									"key": "sourceURL",
+									"value": "https://drive.google.com/uc?export=download%26id=1wOcO1yIk8u3hlii5i8WIBoI15iuRpujx"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -120,7 +253,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n{\r\n    \"list_requirements\": [\"mayor de edad\"],\r\n    \"date_start\": \"2010-11-11T23:00:00.000Z\",\r\n    \"date_end\": \"2011-12-11T23:00:00.000Z\",\r\n    \"description\": \"Viaje\",\r\n    \"title\": \"Viaje a Alemania\",\r\n    \"ticker\": \"190115-BAAA\",\r\n    \"picture\": [{\r\n              \"Buffer\":\"awedfcrfvaesfvefdvsfdv1aerdfvadf64vAadf8bv4gs6d4bs6gv15fs1v6efef\",\r\n               \"contentType\":\"jpg\"\r\n               }],\r\n    \"stage\": [\r\n    \t{\r\n    \t\t\"title\":\"AlemaniaMunich\",\r\n    \t\t\"description\":\"AlemaniaMunich\",\r\n    \t\t\"price\":0.0\r\n    \t},\r\n    \t{\r\n    \t\t\r\n    \t\t\"title\":\"AlemaniaBerlin\",\r\n    \t\t\"description\":\"AlemaniaBerlin\",\r\n    \t\t\"price\":0.0\r\n    \t}\r\n    \t\r\n    ]\r\n  \r\n}\r\n   "
+							"raw": "\r\n{\r\n    \"list_requirements\": [\"mayor de edad\"],\r\n    \"date_start\": \"2010-11-11T23:00:00.000Z\",\r\n    \"date_end\": \"2011-12-11T23:00:00.000Z\",\r\n    \"description\": \"Viaje\",\r\n    \"title\": \"Viaje a Alemania\",\r\n    \"picture\": [{\r\n              \"Buffer\":\"awedfcrfvaesfvefdvsfdv1aerdfvadf64vAadf8bv4gs6d4bs6gv15fs1v6efef\",\r\n               \"contentType\":\"jpg\"\r\n               }],\r\n    \"stage\": [\r\n    \t{\r\n    \t\t\"title\":\"AlemaniaMunich\",\r\n    \t\t\"description\":\"AlemaniaMunich\",\r\n    \t\t\"price\":0.0\r\n    \t},\r\n    \t{\r\n    \t\t\r\n    \t\t\"title\":\"AlemaniaBerlin\",\r\n    \t\t\"description\":\"AlemaniaBerlin\",\r\n    \t\t\"price\":0.0\r\n    \t}\r\n    \t\r\n    ]\r\n  \r\n}\r\n   "
 						},
 						"url": {
 							"raw": "http://localhost:4000/v1/trips",
